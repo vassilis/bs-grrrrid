@@ -1,1 +1,5 @@
-<a href="javascript:(function(){if(window.myBookmarklet!==undefined){myBookmarklet();}else{document.body.appendChild(document.createElement('script')).src='https://raw.githubusercontent.com/vassilis/bs-grrrrid/master/grid.js?';}})();">bootstrap grid bookmarklet</a>
+bootstrap grid bookmarklet
+---
+
+Press F to toggle fluid
+Press Esc to exit
