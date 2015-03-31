@@ -1,5 +1,3 @@
-
-
 (function() {
   (function() {
     var done, initGrrrridlet, script, v;
