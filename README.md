@@ -1,7 +1,6 @@
-bootstrap grid bookmarklet
+
+Grid Bookmarklet
 ---
 
-Press F to toggle fluid  
-Press Esc to exit  
-
-Won't load on sites that prevent script injection including gmail and github.
+<a href="http://vassilis.github.io/bs-grrrrid/">bs-grrrrid</a>
+---
