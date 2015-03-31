@@ -6,98 +6,19 @@
     initGrrrridlet = function() {
       return (window.grrrridlet = function() {
         var el, $body, $col, $container, $grid, $row, i, class_list;
-
           el = document;
           $body = el.body;
-
           if ($body.querySelector(".grrrrid") !== null) {
             $body.removeChild(el.querySelector(".grrrrid"));
             $body.removeChild(el.querySelector("#grrrrid-style"));
           } else {
             $grid = el.createElement("DIV");
             $grid.setAttribute("class", "grrrrid");
-            $container = el.createElement("DIV");
-            $container.setAttribute("id", "grrrrid-container");
-            $container.setAttribute("class", "grrrrid-container");
-            $row = el.createElement("DIV");
-            $row.setAttribute("class", "grrrrid-row");
-            $col = el.createElement("DIV");
-            $col.setAttribute("class", "grrrrid-col");
-            $col.innerHTML = "<div></div>";
+            $grid.innerHTML = '<div id="grrrrid-container" class="grrrrid-container"><div class="grrrrid-row"><div class="grrrrid-col"><div></div></div><div class="grrrrid-col"><div></div></div><div class="grrrrid-col"><div></div></div><div class="grrrrid-col"><div></div></div><div class="grrrrid-col"><div></div></div><div class="grrrrid-col"><div></div></div><div class="grrrrid-col"><div></div></div><div class="grrrrid-col"><div></div></div><div class="grrrrid-col"><div></div></div><div class="grrrrid-col"><div></div></div><div class="grrrrid-col"><div></div></div><div class="grrrrid-col"><div></div></div></div></div>';
 
-            i = 1;
-            while (i <= 12) {
-              $row.appendChild($col.cloneNode(true));
-              i++;
-            }
-            $container.appendChild($row);
-            $grid.appendChild($container);
-
-            $style = $row = el.createElement("STYLE");
+            $style = el.createElement("STYLE");
             $style.setAttribute("id", "grrrrid-style");
-            $style.textContent = "\
-              .grrrrid * {\
-                -webkit-box-sizing: border-box;\
-                -moz-box-sizing: border-box;\
-                box-sizing: border-box;\
-              }\
-              .grrrrid {\
-                position: fixed;\
-                top: 0;\
-                left: 0;\
-                z-index: 100000;\
-                width: 100%;\
-                height: 100%;\
-                margin: 0 auto;\
-                opacity: .5;\
-              }\
-              .grrrrid div {\
-                height: 100%;\
-              }\
-              .grrrrid-container {\
-                margin-right: auto;\
-                margin-left: auto;\
-                padding-left: 15px;\
-                padding-right: 15px;\
-              }\
-              @media (min-width: 768px) {\
-                .grrrrid-container {\
-                  width: 750px;\
-                }\
-              }\
-              @media (min-width: 992px) {\
-                .grrrrid-container {\
-                  width: 970px;\
-                }\
-              }\
-              @media (min-width: 1200px) {\
-                .grrrrid-container {\
-                  width: 1170px;\
-                }\
-              }\
-              .grrrrid-container-fluid {\
-                margin-right: auto;\
-                margin-left: auto;\
-                padding-left: 15px;\
-                padding-right: 15px;\
-              }\
-              .grrrrid-row {\
-                margin-left: -15px;\
-                margin-right: -15px;\
-              }\
-              .grrrrid-col {\
-                float: left;\
-                width: 8.33333333%;\
-                position: relative;\
-                min-height: 1px;\
-                padding-left: 15px;\
-                padding-right: 15px;\
-              }\
-              .grrrrid-col div {\
-                background: #FFA;\
-                height: 100%;\
-              }\
-            ";
+            $style.textContent = ".grrrrid *{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}.grrrrid{position:fixed;top:0;left:0;z-index:100000;width:100%;height:100%;margin:0 auto;opacity:.5}.grrrrid div{height:100%}.grrrrid-container,.grrrrid-container-fluid{margin-right:auto;margin-left:auto;padding-left:15px;padding-right:15px}@media (min-width:768px){.grrrrid-container{width:750px}}@media (min-width:992px){.grrrrid-container{width:970px}}@media (min-width:1200px){.grrrrid-container{width:1170px}}.grrrrid-row{margin-left:-15px;margin-right:-15px}.grrrrid-col{float:left;width:8.33333333%;position:relative;min-height:1px;padding-left:15px;padding-right:15px}.grrrrid-col div{background:#FFA;height:100%}";
 
             $body.appendChild($style);
             $body.appendChild($grid);
@@ -114,10 +35,8 @@
               }
             });
           }
-
       })();
     };
     return initGrrrridlet();
   })();
-
 }).call(this);
