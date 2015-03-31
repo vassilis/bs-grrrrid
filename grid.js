@@ -24,6 +24,11 @@
 
             style = "\
               <style id='grrrrid-style'>\
+                .grrrrid * {\
+                  -webkit-box-sizing: border-box;\
+                  -moz-box-sizing: border-box;\
+                  box-sizing: border-box;\
+                }\
                 .grrrrid {\
                   position: fixed;\
                   top: 0;\
