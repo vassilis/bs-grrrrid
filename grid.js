@@ -2,19 +2,17 @@
 
 (function() {
   (function() {
-    var done, initMyBookmarklet, script, v;
-    initMyBookmarklet = function() {
-      return (window.myBookmarklet = function() {
+    var done, initGrrrridlet, script, v;
+    initGrrrridlet = function() {
+      return (window.grrrridlet = function() {
         var $body, $col, $container, $grid, $row, i;
-        if ($(".container").length === 0 && $(".container-fluid").length === 0) {
-          return alert("This page does not use Bootstrap!");
-        } else {
+
           if ($(".grrrrid").length === 0) {
             $body = $("body");
             $grid = $("<div class=\"grrrrid\"></div>");
-            $container = $("<div id=\"grrrrid-container\" class=\"container\"></div>");
-            $row = $("<div class=\"row\"></div>");
-            $col = $("<div class=\"col-sm-1\"></div>");
+            $container = $("<div id=\"grrrrid-container\" class=\"grrrrid-container\"></div>");
+            $row = $("<div class=\"grrrrid-row\"></div>");
+            $col = $("<div class=\"grrrrid-col\"></div>");
             $col.append("<div></div>");
             i = 1;
             while (i <= 12) {
@@ -23,53 +21,101 @@
             }
             $container.append($row);
             $grid.append($container);
+
+            style = "\
+              <style id='grrrrid-style'>\
+                .grrrrid {\
+                  position: fixed;\
+                  top: 0;\
+                  left: 0;\
+                  z-index: 100000;\
+                  width: 100%;\
+                  height: 100%;\
+                  margin: 0 auto;\
+                  opacity: .5;\
+                }\
+                .grrrrid div {\
+                  height: 100%;\
+                }\
+                .grrrrid-container {\
+                  margin-right: auto;\
+                  margin-left: auto;\
+                  padding-left: 15px;\
+                  padding-right: 15px;\
+                }\
+                @media (min-width: 768px) {\
+                  .grrrrid-container {\
+                    width: 750px;\
+                  }\
+                }\
+                @media (min-width: 992px) {\
+                  .grrrrid-container {\
+                    width: 970px;\
+                  }\
+                }\
+                @media (min-width: 1200px) {\
+                  .grrrrid-container {\
+                    width: 1170px;\
+                  }\
+                }\
+                .grrrrid-container-fluid {\
+                  margin-right: auto;\
+                  margin-left: auto;\
+                  padding-left: 15px;\
+                  padding-right: 15px;\
+                }\
+                .grrrrid-row {\
+                  margin-left: -15px;\
+                  margin-right: -15px;\
+                }\
+                .grrrrid-col {\
+                  float: left;\
+                  width: 8.33333333%;\
+                  position: relative;\
+                  min-height: 1px;\
+                  padding-left: 15px;\
+                  padding-right: 15px;\
+                }\
+                .grrrrid-col div {\
+                  background: #FFA;\
+                  height: 100%;\
+                }\
+              </style>\
+            ";
+
+            $body.append(style);
             $body.append($grid);
-            $grid.css({
-              position: "fixed",
-              top: 0,
-              left: 0,
-              zIndex: 100000,
-              width: "100%",
-              height: "100%",
-              margin: "0 auto",
-              opacity: .5
-            });
-            $grid.find("div").css({
-              height: "100%"
-            });
-            $grid.find(".col-sm-1 > div").css({
-              background: "#FFA",
-              height: "100%"
-            });
+
             return $(document).keyup(function(e) {
               console.log(e.keyCode);
               if (e.keyCode === 70) {
-                $("#grrrrid-container").toggleClass("container container-fluid");
+                $("#grrrrid-container").toggleClass("grrrrid-container grrrrid-container-fluid");
               }
               if (e.keyCode === 27) {
-                return $(".grrrrid").remove();
+                $(".grrrrid").remove();
               }
             });
           } else {
-            return $(".grrrrid").remove();
+            $(".grrrrid").remove();
+            $("#grrrrid-style").remove();
           }
-        }
+
       })();
     };
-    v = "1.3.2";
+    v = "2.1.3";
     if (window.jQuery === undefined || window.jQuery.fn.jquery < v) {
       done = false;
       script = document.createElement("script");
-      script.src = "http://ajax.googleapis.com/ajax/libs/jquery/" + v + "/jquery.min.js";
+      script.src = "//ajax.googleapis.com/ajax/libs/jquery/" + v + "/jquery.min.js";
       script.onload = script.onreadystatechange = function() {
         if (!done && (!this.readyState || this.readyState === "loaded" || this.readyState === "complete")) {
           done = true;
-          return initMyBookmarklet();
+          return initGrrrridlet();
         }
       };
       return document.getElementsByTagName("head")[0].appendChild(script);
     } else {
-      return initMyBookmarklet();
+      return initGrrrridlet();
     }
   })();
 
