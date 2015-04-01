@@ -32,17 +32,14 @@
               viewport = parseFloat($body.clientWidth);
               width = parseFloat(getComputedStyle($grrrrid_container)["width"]);
 
-              if (e.keyCode === 49 && e.shiftKey || e.keyCode === 35) { // reset
-                $grrrrid_container.setAttribute('style', null);;
-              }
               if (e.keyCode === 37 && e.shiftKey) { // left
                 if (width > 0) {
-                  $grrrrid_container.style.width = width - 1 + "px";
+                  $grrrrid_container.style.width = width - 5 + "px";
                 }
               }
               if (e.keyCode === 39 && e.shiftKey) { // right
                 if (width < viewport) {
-                  $grrrrid_container.style.width = width + 1 + "px";
+                  $grrrrid_container.style.width = width + 5 + "px";
                 }
               }
               if (e.keyCode === 38 && e.shiftKey) { // up
@@ -57,10 +54,14 @@
                 }
                 return false;
               }
-              if (e.keyCode === 70 && e.shiftKey) {
-                class_list = el.querySelector("#grrrrid-container").classList;
-                class_list.toggle("grrrrid-container");
-                class_list.toggle("grrrrid-container-fluid");
+              if (e.keyCode === 70 && e.shiftKey) { // reset and toggle fluid
+                if ($grrrrid_container.getAttribute('style') != null) {
+                  $grrrrid_container.removeAttribute('style');
+                } else {
+                  class_list = el.querySelector("#grrrrid-container").classList;
+                  class_list.toggle("grrrrid-container");
+                  class_list.toggle("grrrrid-container-fluid");
+                }
                 return false;
               }
               if (e.keyCode === 27) {
