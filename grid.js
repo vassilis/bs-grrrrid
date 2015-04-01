@@ -1,7 +1,6 @@
 (function() {
   (function() {
-    var done, initGrrrridlet, script, v;
-    initGrrrridlet = function() {
+    var initGrrrridlet = function() {
       return (window.grrrridlet = function() {
         var el, $body, $style, $grrrrid, $grrrrid_container,
             $counter, $grrrrid_counter, class_list, opacity, viewport, width, hide_counter;
