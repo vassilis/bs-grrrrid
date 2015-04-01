@@ -23,6 +23,8 @@
 
             $grrrrid = el.querySelector(".grrrrid");
             $grrrrid_container = el.querySelector(".grrrrid-container");
+            $grrrrid.focus();
+            window.onfocus = function() { $grrrrid.focus(); }
 
             return el.addEventListener("keydown", function(e) {
               // console.log(e.keyCode);
