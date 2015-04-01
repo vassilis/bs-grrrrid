@@ -22,7 +22,7 @@
             $body.appendChild($grid);
 
             return el.addEventListener("keyup", function(e) {
-              if (e.keyCode === 70) {
+              if (e.keyCode === 70 && e.shiftKey) {
                 class_list = el.querySelector("#grrrrid-container").classList;
                 class_list.toggle("grrrrid-container");
                 class_list.toggle("grrrrid-container-fluid");
