@@ -22,7 +22,7 @@
         border: 1px solid #E1E1E8;
         text-align: left;
         max-width: 600px;
-        margin: 0 auto 50px;
+        margin: 50px auto 150px;
         -webkit-border-radius: 5px;
         -moz-border-radius: 5px;
         border-radius: 5px;
@@ -53,6 +53,7 @@
       ga('send', 'pageview');
     </script>
     <h1>Grid Bookmarklet</h1>
+    <a class="btn" href="javascript:(function(){if(window.grrrridlet!==undefined){grrrridlet();}else{document.body.appendChild(document.createElement('script')).src='//vassilis.github.io/bs-grrrrid/grid.min.js?';}})();">Grid</a>
     <div class="highlight">
       Drag the Grid button into your bookmarks.<br>
       Click the bookmark to display a semi-transparent grid overlay on any page.<br><br>
@@ -66,6 +67,5 @@
       Please be aware that the bookmarklet won't load on sites that prevent script injection including Gmail and GitHub.<br><br>
       <a href="https://github.com/vassilis/bs-grrrrid">Find the source on GitHub</a>
     </div>
-    <a class="btn" href="javascript:(function(){if(window.grrrridlet!==undefined){grrrridlet();}else{document.body.appendChild(document.createElement('script')).src='//vassilis.github.io/bs-grrrrid/grid.min.js?';}})();">Grid</a>
   </body>
 </html>
