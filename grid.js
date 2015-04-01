@@ -3,7 +3,7 @@
     var done, initGrrrridlet, script, v;
     initGrrrridlet = function() {
       return (window.grrrridlet = function() {
-        var el, $body, $style, $grrrrid, $grrrrid_container, class_list, opacity, viewport, width, initial_width;
+        var el, $body, $style, $grrrrid, $grrrrid_container, class_list, opacity, viewport, width;
           el = document;
           $body = el.body;
           if ($body.querySelector(".grrrrid") !== null) {
@@ -23,7 +23,6 @@
 
             $grrrrid = el.querySelector(".grrrrid");
             $grrrrid_container = el.querySelector(".grrrrid-container");
-            initial_width = parseFloat(getComputedStyle($grrrrid_container)["width"]);
 
             return el.addEventListener("keydown", function(e) {
               // console.log(e.keyCode);
@@ -32,7 +31,7 @@
               width = parseFloat(getComputedStyle($grrrrid_container)["width"]);
 
               if (e.keyCode === 49 && e.shiftKey || e.keyCode === 35) { // reset
-                $grrrrid_container.style.width = initial_width + "px";
+                $grrrrid_container.setAttribute('style', null);;
               }
               if (e.keyCode === 37 && e.shiftKey) { // left
                 if (width > 0) {
