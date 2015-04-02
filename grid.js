@@ -37,49 +37,55 @@
             grab_focus();
             window.addEventListener("onfocus", grab_focus, false);
 
+            // handle mousewheel events
             // IE9, Chrome, Safari, Opera
             $body.addEventListener("mousewheel", mousewheel_handler, false);
             // Firefox
             $body.addEventListener("DOMMouseScroll", mousewheel_handler, false);
 
             function mousewheel_handler(e) {
-                delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
-                opacity = parseFloat(getComputedStyle($grrrrid)["opacity"]);
-                viewport = parseFloat($body.clientWidth);
-                width = parseFloat(getComputedStyle($grrrrid_container)["width"]);
-                if (e.shiftKey) {
-                    if (delta > 0) {
-                        // scroll up
-                        if (opacity < 1) {
-                            $grrrrid.style.opacity = opacity + 0.1;
+                if (e.shiftKey || e.altKey) {
+                    delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
+                    opacity = parseFloat(getComputedStyle($grrrrid)["opacity"]);
+                    viewport = parseFloat($body.clientWidth);
+                    width = parseFloat(getComputedStyle($grrrrid_container)["width"]);
+                    if (e.shiftKey) {
+                        if (delta > 0) {
+                            // scroll up
+                            if (opacity < 1) {
+                                $grrrrid.style.opacity = opacity + 0.1;
+                            }
+                        } else {
+                            // scroll down
+                            if (opacity > 0) {
+                                $grrrrid.style.opacity = opacity - 0.1;
+                            }
                         }
-                    } else {
-                        // scroll down
-                        if (opacity > 0) {
-                            $grrrrid.style.opacity = opacity - 0.1;
-                        }
+                        return false;
                     }
-                }
-                if (e.altKey) {
-                    if (delta > 0) {
-                        // scroll up
-                        if (width > 0) {
-                          $grrrrid_container.style.width = width + 5 + "px";
-                          $grrrrid_counter.style.visibility = "visible";
-                          $grrrrid_counter.textContent = getComputedStyle($grrrrid_container)["width"];
+                    if (e.altKey) {
+                        if (delta > 0) {
+                            // scroll up
+                            if (width > 0) {
+                              $grrrrid_container.style.width = width + 5 + "px";
+                              $grrrrid_counter.style.visibility = "visible";
+                              $grrrrid_counter.textContent = getComputedStyle($grrrrid_container)["width"];
+                            }
+                        } else {
+                            // scroll down
+                            if (width < viewport) {
+                              $grrrrid_container.style.width = width - 5 + "px";
+                              $grrrrid_counter.style.visibility = "visible";
+                              $grrrrid_counter.textContent = getComputedStyle($grrrrid_container)["width"];
+                            }
                         }
-                    } else {
-                        // scroll down
-                        if (width < viewport) {
-                          $grrrrid_container.style.width = width - 5 + "px";
-                          $grrrrid_counter.style.visibility = "visible";
-                          $grrrrid_counter.textContent = getComputedStyle($grrrrid_container)["width"];
-                        }
+                        return false;
                     }
                 }
                 return false;
             }
             
+            // handle key press events
             el.addEventListener("keyup", onkeyup, true);
             el.addEventListener("keydown", onkeydown, true);
 
