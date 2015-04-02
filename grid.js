@@ -3,7 +3,7 @@
     var done, initGrrrridlet, script, v;
     initGrrrridlet = function() {
       return (window.grrrridlet = function() {
-        var el, $body, $style, $grrrrid, $grrrrid_container, class_list, opacity, viewport, width;
+        var el, $body, $style, $grrrrid, $grrrrid_container, class_list, opacity, viewport, width, delta;
           el = document;
           $body = el.body;
           if ($body.querySelector(".grrrrid") !== null) {
@@ -26,6 +26,44 @@
             $grrrrid.focus();
             window.onfocus = function() { $grrrrid.focus(); }
 
+            // IE9, Chrome, Safari, Opera
+            $body.addEventListener("mousewheel", MouseWheelHandler, false);
+            // Firefox
+            $body.addEventListener("DOMMouseScroll", MouseWheelHandler, false);
+            
+            function MouseWheelHandler(e) {
+                delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
+                opacity = parseFloat(getComputedStyle($grrrrid)["opacity"]);
+                viewport = parseFloat($body.clientWidth);
+                width = parseFloat(getComputedStyle($grrrrid_container)["width"]);
+                if (e.shiftKey) {
+                    if (delta > 0) {
+                        // scroll up
+                        if (opacity < 1) {
+                            $grrrrid.style.opacity = opacity + 0.1;
+                        }
+                    } else {
+                        // scroll down
+                        if (opacity > 0) {
+                            $grrrrid.style.opacity = opacity - 0.1;
+                        }
+                    }
+                }
+                if (e.ctrlKey) {
+                    if (delta > 0) {
+                        // scroll up
+                        if (width > 0) {
+                          $grrrrid_container.style.width = width + 1 + "px";
+                        }
+                    } else {
+                        // scroll down
+                        if (width < viewport) {
+                          $grrrrid_container.style.width = width - 1 + "px";
+                        }
+                    }
+                }
+            }
+            
             return el.addEventListener("keydown", function(e) {
               // console.log(e.keyCode);
               opacity = parseFloat(getComputedStyle($grrrrid)["opacity"]);
