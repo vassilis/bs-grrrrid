@@ -29,15 +29,20 @@
             $grrrrid = el.querySelector(".grrrrid");
             $grrrrid_container = el.querySelector(".grrrrid-container");
             $grrrrid_counter = el.querySelector(".grrrrid-counter");
-            $grrrrid.focus();
-            window.onfocus = function() { $grrrrid.focus(); }
+            
+            // Ensure focus
+            function grab_focus() {
+               $grrrrid.focus();
+            }
+            grab_focus();
+            window.addEventListener("onfocus", grab_focus, false);
 
             // IE9, Chrome, Safari, Opera
-            $body.addEventListener("mousewheel", MouseWheelHandler, false);
+            $body.addEventListener("mousewheel", mousewheel_handler, false);
             // Firefox
-            $body.addEventListener("DOMMouseScroll", MouseWheelHandler, false);
-            
-            function MouseWheelHandler(e) {
+            $body.addEventListener("DOMMouseScroll", mousewheel_handler, false);
+
+            function mousewheel_handler(e) {
                 delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
                 opacity = parseFloat(getComputedStyle($grrrrid)["opacity"]);
                 viewport = parseFloat($body.clientWidth);
@@ -72,6 +77,7 @@
                         }
                     }
                 }
+                return false;
             }
             
             el.addEventListener("keyup", onkeyup, true);
@@ -132,10 +138,16 @@
                 return false;
               }
               if (e.keyCode === 27) { // exit
+                // remove nodes
                 $body.removeChild(el.querySelector(".grrrrid"));
                 $body.removeChild(el.querySelector("#grrrrid-style"));
+                $body.removeChild(el.querySelector("#grrrrid-counter"));
+                // remove event listeners
                 el.removeEventListener("keyup", onkeyup, true);
                 el.removeEventListener("keydown", onkeydown, true);
+                window.removeEventListener("onfocus", grab_focus, false);
+                $body.removeEventListener("mousewheel", mousewheel_handler, false);
+                $body.removeEventListener("DOMMouseScroll", mousewheel_handler, false);
                 return false;
               }
             }
