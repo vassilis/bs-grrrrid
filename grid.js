@@ -49,21 +49,7 @@
                     opacity = parseFloat(getComputedStyle($grrrrid)["opacity"]);
                     viewport = parseFloat($body.clientWidth);
                     width = parseFloat(getComputedStyle($grrrrid_container)["width"]);
-                    if (e.shiftKey) {
-                        if (delta > 0) {
-                            // scroll up
-                            if (opacity < 1) {
-                                $grrrrid.style.opacity = opacity + 0.1;
-                            }
-                        } else {
-                            // scroll down
-                            if (opacity > 0) {
-                                $grrrrid.style.opacity = opacity - 0.1;
-                            }
-                        }
-                        return false;
-                    }
-                    if (e.altKey) {
+                    if (e.shiftKey && e.ctrlKey) {
                         if (delta > 0) {
                             // scroll up
                             if (width > 0) {
@@ -77,6 +63,20 @@
                               $grrrrid_container.style.width = width - 5 + "px";
                               $grrrrid_counter.style.visibility = "visible";
                               $grrrrid_counter.textContent = getComputedStyle($grrrrid_container)["width"];
+                            }
+                        }
+                        return false;
+                    }
+                    if (e.shiftKey) {
+                        if (delta > 0) {
+                            // scroll up
+                            if (opacity < 1) {
+                                $grrrrid.style.opacity = opacity + 0.1;
+                            }
+                        } else {
+                            // scroll down
+                            if (opacity > 0) {
+                                $grrrrid.style.opacity = opacity - 0.1;
                             }
                         }
                         return false;
